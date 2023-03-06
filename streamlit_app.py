@@ -54,7 +54,7 @@ except URLError as e:
 # Output in the screen as a table
 # streamlit.dataframe(fruityvice_normalized)
 
-# streamlit.stop()
+
 
 # import snowflake.connector
 streamlit.header("The Fruit Load List Contains:")
@@ -71,7 +71,7 @@ if streamlit.button('Get Fruit Load List'):
   streamlit.dataframe(my_data_rows)
 
 
-
+streamlit.stop()
 # New section to display 2nd Fruityvice API Response
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfruit')
 streamlit.write('Thanks for adding ', add_my_fruit)
