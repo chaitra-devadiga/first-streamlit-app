@@ -45,17 +45,6 @@ try:
 except URLError as e:
     sreamlit.error()
 
-# import requests
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-# streamlit.text(fruityvice_response.json()) # Just writes data to the screen
-
-# Take the JSON version of the response and normalize it
-# fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# Output in the screen as a table
-# streamlit.dataframe(fruityvice_normalized)
-
-
-
 # import snowflake.connector
 streamlit.header("The Fruit Load List Contains:")
 #Snoflake - related Functions
@@ -71,9 +60,17 @@ if streamlit.button('Get Fruit Load List'):
   streamlit.dataframe(my_data_rows)
 
 
-streamlit.stop()
-# New section to display 2nd Fruityvice API Response
+# Allow the end user to add a fruit to the list
+def insert_row_snowflake(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into Fruit_load_list values ('from streamlit')")
+    return "Thanks for adding" + new_fruit
+  
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfruit')
-streamlit.write('Thanks for adding ', add_my_fruit)
+if streamlit.button('Add a fruit to the List')
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  back_from_function = insert_row_snowflake(add_my_fruit)
+  streamlit.text(back_from_function)
 
-my_cur.execute("insert into Fruit_load_list values ('from streamlit')")
+
+
